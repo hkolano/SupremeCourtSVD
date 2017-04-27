@@ -85,7 +85,21 @@ def process_data():
     for n in range(9):
         new_sheet[n] = new_sheet[n][:int(case_in_court_count/9)]
     court_matrix.append(new_sheet)
-    return court_matrix
+    for matrix in court_matrix:
+      if np.array(matrix).size == 9:
+        pass
+      else:
+        these_judges = []
+        for n in range(9):
+            these_judges.append(matrix[n][0])
+            matrix[n] = matrix[n][1:]
+        try:
+            u, s, v = np.linalg.svd(matrix)
+            j_vec_val = (these_judges, u[:3], s[:3])
+            svd_data.append(j_vec_val)
+        except np.linalg.linalg.LinAlgError as err:
+            pass
+  return svd_data
 
 
 def listToMatrix(listOfLists):
