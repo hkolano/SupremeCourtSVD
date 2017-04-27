@@ -11,6 +11,7 @@ hannah.kolano@students.olin.edu
 from pyexcel_ods import get_data
 from numpy import matrix
 from numpy import linalg
+import numpy as np
 
 
 def process_data():
@@ -24,6 +25,7 @@ def process_data():
     first_case = data[0:9]
     court_matrix = []
     case_indexes = []
+    svd_data = []
 
     # initializes judge list for the first case
     for row in first_case:
@@ -99,7 +101,7 @@ def process_data():
             svd_data.append(j_vec_val)
         except np.linalg.linalg.LinAlgError as err:
             pass
-  return svd_data
+    return svd_data
 
 
 def listToMatrix(listOfLists):
