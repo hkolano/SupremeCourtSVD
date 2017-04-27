@@ -9,6 +9,7 @@ hannah.kolano@students.olin.edu
 '''
 # import the needed libraries
 from pyexcel_ods import get_data
+import numpy as np
 
 # get data from the spreadsheet
 data = get_data("consolidated_data.ods", start_row=1, start_column=2, column_limit=3)
@@ -20,11 +21,11 @@ judges = []
 first_case = data[0:9]
 court_matrix = []
 case_indexes = []
+svd_data = []
 
 # initializes judge list for the first case
 for row in first_case:
     judges.append(row[2])
-
 
 # creates the first matrix, of zeroes initially
 new_sheet = [[0]*int(len(data)/9+1) for i in range(9)]
@@ -53,7 +54,8 @@ for row in data:
         for n in range(9):
             new_sheet[n] = new_sheet[n][:int(case_in_court_count/9)]
         # finish this sheet and make a new one
-        court_matrix.append(new_sheet)
+        if new_sheet != [[], [], [], [], [], [], [], [], []]:
+            court_matrix.append(new_sheet)
         new_sheet = [[0]*int(len(data)/9+1) for i in range(9)]
         cases = []
         # reset the judges
@@ -82,4 +84,8 @@ for row in data:
 for n in range(9):
     new_sheet[n] = new_sheet[n][:int(case_in_court_count/9)]
 court_matrix.append(new_sheet)
-print(court_matrix)
+
+for matrix in court_matrix:
+    u, s, v = np.linalg.svd(matrix)
+    this_set = (u, s)
+    svd_data.append(this_set)
