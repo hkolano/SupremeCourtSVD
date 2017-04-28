@@ -11,6 +11,7 @@ hannah.kolano@students.olin.edu
 from pyexcel_ods import get_data
 from numpy import matrix
 from numpy import linalg
+import numpy as np
 
 
 def process_data():
@@ -24,6 +25,7 @@ def process_data():
     first_case = data[0:9]
     court_matrix = []
     case_indexes = []
+    svd_data = []
 
     # initializes judge list for the first case
     for row in first_case:
@@ -85,10 +87,11 @@ def process_data():
     for n in range(9):
         new_sheet[n] = new_sheet[n][:int(case_in_court_count/9)]
     court_matrix.append(new_sheet)
-    
+
     for matrix in court_matrix:
         if np.array(matrix).size == 9:
             pass
+
         else:
             these_judges = []
             for n in range(9):
