@@ -89,17 +89,20 @@ def process_data():
     court_matrix.append(new_sheet)
 
     for matrix in court_matrix:
-        these_judges = []
-        for n in range(9):
-            if len(matrix[n]) > 1:
-                these_judges.append(matrix[n][0])
-                matrix[n] = matrix[n][1:]
-        try:
-            u, s, v = np.linalg.svd(matrix)
-            j_vec_val = (sthese_judges, u[:3], s[:3])
-            svd_data.append(j_vec_val)
-        except np.linalg.linalg.LinAlgError as err:
+        if np.array(matrix).size == 9:
             pass
+        else:
+            these_judges = []
+            for n in range(9):
+                if len(matrix[n]) > 1:
+                    these_judges.append(matrix[n][0])
+                    matrix[n] = matrix[n][1:]
+            try:
+                u, s, v = np.linalg.svd(matrix)
+                j_vec_val = (these_judges, u[:3], s[:3])
+                svd_data.append(j_vec_val)
+            except np.linalg.linalg.LinAlgError as err:
+                pass
     return svd_data
 
 
