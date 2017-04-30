@@ -22,7 +22,8 @@ for i in range(len(listOfCourts)):
         colVector += 3
         rowVector = 0
     for element in Court[4]:
-        sheet1.write(5, colValue, element)             # write singular values in
+        for i in range(9):
+            sheet1.write(i+1, colValue, element)
         colValue += 3
 
 '''Desired Format in excel spreadsheet: for each court:

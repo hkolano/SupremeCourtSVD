@@ -9,9 +9,10 @@ hannah.kolano@students.olin.edu
 '''
 # import the needed libraries
 from pyexcel_ods import get_data
-from numpy import matrix
-from numpy import linalg
+from numpy import matrix, linalg
 import numpy as np
+import pickle
+from pickle import dump, load
 
 
 def process_data():
@@ -115,8 +116,14 @@ def listToMatrix(listOfLists):
     for item in listOfMatrices:
         print(item)
 
+# def matrixToExcel(data):
+#     from pickle_dump import pickleDump
+#     pickleDump()
+#     with open('my_file.txt','r') as my_file:
+#         data = pickle.load(my_file)
+#     my_file.close()
 
 if __name__ == '__main__':
     a = process_data()
-    b = listToMatrix(a)
-    print(b)
+    data = listToMatrix(a)
+    matrixToExcel(data)
