@@ -1,6 +1,7 @@
 # Supreme Court SVD
-## Linearity Final Project
-### Hannah Kolano and Gracey Wilson
+## Linearity I Final Project
+## Hannah Kolano and Gracey Wilson
+### Spring 2017
 
 #### Things to install before running code:
 
