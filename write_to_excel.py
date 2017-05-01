@@ -5,7 +5,7 @@ Linearity 1 Final Project
 Spring 2017
 
 Creates a spreadsheet containing the singular value decomposition of the
-decisions of Supreme Court justices from 1946 - 2017 (on a liberal to
+decisions of Supreme Court justices from 1946 - 2010 (on a liberal to
 conservative axis).
 INPUT: Data from a python file in the form of a list of list of lists
       (in this case, listOfCourts from relevant_data.py)
