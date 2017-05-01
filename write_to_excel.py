@@ -1,3 +1,19 @@
+'''
+Hannah Kolano and Gracey Wilson
+Supreme Court SVD Exploration
+Linearity 1 Final Project
+Spring 2017
+
+Creates a spreadsheet containing the singular value decomposition of the
+decisions of Supreme Court justices from 1946 - 2017 (on a liberal to
+conservative axis).
+INPUT: Data from a python file in the form of a list of list of lists
+      (in this case, listOfCourts from relevant_data.py)
+OUTPUT: An excel spreadsheet where each sheet shows the data of one "court"'s
+decisions in the format:
+judgenames   |   singularvalue1 * [vector1]   +   singularvalue2 * [vector2]   +   singularvalue3 * [vector3]
+'''
+
 import xlwt
 from relevant_data import listOfCourts
 
@@ -23,26 +39,9 @@ for i in range(len(listOfCourts)):
         rowVector = 0
     for element in Court[4]:
         for i in range(9):
-            sheet1.write(i+1, colValue, element)
+            sheet1.write(i+1, colValue, element)            # write singular values into cols
         colValue += 3
 
-'''Desired Format in excel spreadsheet: for each court:
-judgenames   |   singularvalue1 * [vector1]   +   singularvalue2 * [vector2]   +   singularvalue3 * [vector3]
-'''
-# sheet1.write(1, 0, "Dominance")
-# sheet1.write(2, 0, "Test")
-#
-# sheet1.write(0, 1, x)
-# sheet1.write(1, 1, y)
-# sheet1.write(2, 1, z)
-#
-# sheet1.write(4, 0, "Stimulus Time")
-# sheet1.write(4, 1, "Reaction Time")
-#
-# i=4
-# for n in list1:
-#     i = i+1
-#     sheet1.write(i, 0, n)
 
 if __name__ == '__main__':
     book.save("Judges and Decisions.xls")

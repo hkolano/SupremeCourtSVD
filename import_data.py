@@ -1,18 +1,18 @@
 '''
+Hannah Kolano and Gracey Wilson
+Supreme Court SVD Exploration
+Linearity 1 Final Project
+Spring 2017
+
 Imports supreme justice data since 1946 and turns into list of matrices with
 judges on the y-axis and caes on the x-axis. A new matrix occurs when the court
 changes.
-
-Author: Hannah Kolano and Gracey Wilson
-April 2017
-hannah.kolano@students.olin.edu
 '''
+
 # import the needed libraries
 from pyexcel_ods import get_data
 from numpy import matrix, linalg
 import numpy as np
-import pickle
-from pickle import dump, load
 
 
 def process_data():
@@ -116,14 +116,6 @@ def listToMatrix(listOfLists):
     for item in listOfMatrices:
         print(item)
 
-# def matrixToExcel(data):
-#     from pickle_dump import pickleDump
-#     pickleDump()
-#     with open('my_file.txt','r') as my_file:
-#         data = pickle.load(my_file)
-#     my_file.close()
-
 if __name__ == '__main__':
     a = process_data()
     data = listToMatrix(a)
-    matrixToExcel(data)
