@@ -100,7 +100,7 @@ def process_data():
                     matrix[n] = matrix[n][1:]
             try:
                 u, s, v = np.linalg.svd(matrix)
-                j_vec_val = (these_judges, s[:9])
+                j_vec_val = [these_judges, s[:9]]
                 svd_data.append(j_vec_val)
                 print(j_vec_val)
             except np.linalg.linalg.LinAlgError as err:
