@@ -109,7 +109,6 @@ def process_data():
                 singvals = s.tolist()
                 j_sing_yr = [these_judges, singvals, year]
                 svd_data.append(j_sing_yr)
-                print(j_sing_yr)
             except np.linalg.linalg.LinAlgError as err:
                 pass
     return svd_data
