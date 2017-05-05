@@ -1,16 +1,17 @@
 '''
+Hannah Kolano and Gracey Wilson
+Supreme Court SVD Exploration
+Linearity 1 Final Project
+Spring 2017
+
 Imports supreme justice data since 1946 and turns into list of matrices with
 judges on the y-axis and caes on the x-axis. A new matrix occurs when the court
 changes.
-
-Author: Hannah Kolano and Gracey Wilson
-April 2017
-hannah.kolano@students.olin.edu
 '''
+
 # import the needed libraries
 from pyexcel_ods import get_data
-from numpy import matrix
-from numpy import linalg
+from numpy import matrix, linalg
 import numpy as np
 
 
@@ -116,8 +117,5 @@ def process_data():
 #     for item in listOfMatrices:
 #         print(item)
 
-
 if __name__ == '__main__':
     a = process_data()
-    # b = listToMatrix(a)
-    # print(b)

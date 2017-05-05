@@ -1,6 +1,12 @@
-# SupremeCourtSVD
-Hannah Kolano and Gracey Wilson's Linearity Final Project
+# Supreme Court SVD
+### Linearity I Final Project - Spring 2017
+### Hannah Kolano and Gracey Wilson
 
-##### pyexcel_ods
-used to parse data in the linux spreadsheets
-https://pypi.python.org/pypi/pyexcel-ods/0.3.1
+
+#### Things to install before running code:
+
+**pyexcel_ods:** Used to parse data in Linux's spreadsheet software. Learn more at: https://pypi.python.org/pypi/pyexcel-ods/0.3.1
+
+**xlwt:** Used to write data into an Excel-compatible spreadsheet. Learn more at: https://pypi.python.org/pypi/xlwt
+
+**NumPy:** Used to create matrices and perform operations such as SVD. Learn more at: https://pypi.python.org/pypi/numpy
