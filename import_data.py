@@ -99,24 +99,25 @@ def process_data():
                     matrix[n] = matrix[n][1:]
             try:
                 u, s, v = np.linalg.svd(matrix)
-                j_vec_val = (these_judges, u[:3], s[:3])
+                j_vec_val = (these_judges, s[:9])
                 svd_data.append(j_vec_val)
+                print(j_vec_val)
             except np.linalg.linalg.LinAlgError as err:
                 pass
     return svd_data
 
 
-def listToMatrix(listOfLists):
-    '''Writes a list of lists of lists to a list of matrices.'''
-    listOfMatrices = []
-    for item in listOfLists:
-        m = matrix(item)
-        listOfMatrices.append(m)
-    for item in listOfMatrices:
-        print(item)
+# def listToMatrix(listOfLists):
+#     '''Writes a list of lists of lists to a list of matrices.'''
+#     listOfMatrices = []
+#     for item in listOfLists:
+#         m = matrix(item)
+#         listOfMatrices.append(m)
+#     for item in listOfMatrices:
+#         print(item)
 
 
 if __name__ == '__main__':
     a = process_data()
-    b = listToMatrix(a)
-    print(b)
+    # b = listToMatrix(a)
+    # print(b)
