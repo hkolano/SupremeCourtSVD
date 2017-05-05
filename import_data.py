@@ -17,7 +17,7 @@ import numpy as np
 
 def process_data():
     # get data from the spreadsheet
-    data = get_data("consolidated_data.ods", start_row=1, start_column=2, column_limit=3)
+    data = get_data("consolidated_data.ods", start_row=1, start_column=2, column_limit=4)
     data = data["Sheet1"]
 
     # initializes list of cases, list of justices, the first case, and the list to return
@@ -40,14 +40,16 @@ def process_data():
     # some important counters
     counter = 0
     case_in_court_count = 0
+    curr_year = first_case[0][3]
 
     # parses spreadsheet row by row
     # each row is a judge, rotating in intervals of 8/9
     for row in data:
-        case, leaning, judge = row[0], row[1], row[2]
+        case, leaning, judge, year = row[0], row[1], row[2], row[3]
+        print(year)
 
         # if the judge is new...
-        if judge not in judges:
+        if judge not in judges or year != curr_year:
             n = 1
             prev_case = data[counter-n][0]
             # check where the case with a different court started
@@ -59,7 +61,7 @@ def process_data():
             for n in range(9):
                 new_sheet[n] = new_sheet[n][:int(case_in_court_count/9)]
             # finish this sheet and make a new one
-            court_matrix.append(new_sheet)
+            court_matrix.append((new_sheet, curr_year))
             new_sheet = [[0]*int(len(data)/9+1) for i in range(9)]
             cases = []
             # reset the judges
@@ -70,6 +72,7 @@ def process_data():
             for judge in judges:
                 new_sheet[judges.index(judge)][0] = judge
             case_in_court_count = 0
+            curr_year = year
         # change all the 2's to -1's
         if leaning == '':
             leaning = 0
@@ -83,26 +86,30 @@ def process_data():
 
         counter += 1
         case_in_court_count += 1
-        row[0], row[1], row[2] = case, leaning, judge
+        row[0], row[1], row[2], row[3] = case, leaning, judge, year
 
     for n in range(9):
         new_sheet[n] = new_sheet[n][:int(case_in_court_count/9)]
-    court_matrix.append(new_sheet)
 
-    for matrix in court_matrix:
+    court_matrix.append((new_sheet, year))
+
+    for mat_yr in court_matrix:
+        matrix, year = mat_yr[0], mat_yr[1]
         if np.array(matrix).size == 9:
             pass
         else:
             these_judges = []
             for n in range(9):
+                # print(matrix[n])
                 if len(matrix[n]) > 1:
                     these_judges.append(matrix[n][0])
                     matrix[n] = matrix[n][1:]
             try:
                 u, s, v = np.linalg.svd(matrix)
-                j_vec_val = (these_judges, s[:9])
-                svd_data.append(j_vec_val)
-                print(j_vec_val)
+                singvals = s.tolist()
+                j_sing_yr = [these_judges, singvals, year]
+                svd_data.append(j_sing_yr)
+                print(j_sing_yr)
             except np.linalg.linalg.LinAlgError as err:
                 pass
     return svd_data
