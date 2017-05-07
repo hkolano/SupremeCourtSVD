@@ -46,7 +46,6 @@ def process_data():
     # each row is a judge, rotating in intervals of 8/9
     for row in data:
         case, leaning, judge, year = row[0], row[1], row[2], row[3]
-        print(year)
 
         # if the judge is new...
         if judge not in judges or year != curr_year:
@@ -125,3 +124,7 @@ def process_data():
 
 if __name__ == '__main__':
     a = process_data()
+    for year in a:
+        print(year[0])
+        print(year[1])
+        print(year[2])
