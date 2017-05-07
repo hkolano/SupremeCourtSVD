@@ -112,16 +112,6 @@ def process_data():
                 pass
     return svd_data
 
-
-# def listToMatrix(listOfLists):
-#     '''Writes a list of lists of lists to a list of matrices.'''
-#     listOfMatrices = []
-#     for item in listOfLists:
-#         m = matrix(item)
-#         listOfMatrices.append(m)
-#     for item in listOfMatrices:
-#         print(item)
-
 if __name__ == '__main__':
     a = process_data()
     for year in a:
