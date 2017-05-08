@@ -5,8 +5,10 @@ Linearity 1 Final Project
 Spring 2017
 
 Imports supreme justice data since 1946 and turns into list of matrices with
-judges on the y-axis and caes on the x-axis. A new matrix occurs when the court
-changes.
+judges on the y-axis and caes on the x-axis. A new matrix occurs each year but
+also whenever a justice is replaced, which is why there are some repeat years.
+1954,1956,1958,1961,1969,1971,1975,1987,1991,2005,2009
+
 '''
 
 # import the needed libraries
@@ -106,7 +108,14 @@ def process_data():
             try:
                 u, s, v = np.linalg.svd(matrix)
                 singvals = s.tolist()
-                j_sing_yr = [these_judges, singvals, year]
+                singvecTs = v.tolist()
+                avg1 = np.mean(singvecTs[0])
+                try:
+                    avg2 = np.mean(singvecTs[1])
+                    averages = [avg1, avg2]
+                except IndexError:
+                    averages = [avg1]
+                j_sing_yr = [these_judges, singvals, year, [avg1, avg2]]
                 svd_data.append(j_sing_yr)
             except np.linalg.linalg.LinAlgError as err:
                 pass
@@ -114,7 +123,6 @@ def process_data():
 
 if __name__ == '__main__':
     a = process_data()
-    for year in a:
-        print(year[0])
-        print(year[1])
-        print(year[2])
+    print(a)
+    # for year in a:
+    #     print(year[2])
